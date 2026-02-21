@@ -1,0 +1,1140 @@
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Feb 20 20:02:25 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT>PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+           *
+ERROR at line 6:
+ORA-06550: line 6, column 12:
+PLS-00103: Encountered the symbol ">" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 7, column 1:
+PLS-00103: Encountered the symbol "ELSE"
+ORA-06550: line 8, column 53:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at end mod remainder rem <an exponent (**)>
+and or || multiset
+
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+ais not a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: A
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='A';
+Ais a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+                                    *
+ERROR at line 13:
+ORA-06550: line 13, column 37:
+PLS-00103: Encountered the symbol "PALINDROME" when expecting one of the
+following:
+set
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is not a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a armstrong');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a armstrong');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 153
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=153;
+153is a armstrong
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  REV NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  REV:=(REV*10)+REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF TEMP=REV THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a  palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER'||N||IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER' ||N|| 'IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+THE NUMBER2IS PRIME
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Feb 20 20:02:25 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT>PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+           *
+ERROR at line 6:
+ORA-06550: line 6, column 12:
+PLS-00103: Encountered the symbol ">" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 7, column 1:
+PLS-00103: Encountered the symbol "ELSE"
+ORA-06550: line 8, column 53:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at end mod remainder rem <an exponent (**)>
+and or || multiset
+
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+ais not a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: A
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='A';
+Ais a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+                                    *
+ERROR at line 13:
+ORA-06550: line 13, column 37:
+PLS-00103: Encountered the symbol "PALINDROME" when expecting one of the
+following:
+set
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is not a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a armstrong');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a armstrong');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 153
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=153;
+153is a armstrong
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  REV NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  REV:=(REV*10)+REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF TEMP=REV THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a  palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER'||N||IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER' ||N|| 'IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+THE NUMBER2IS PRIME
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Feb 20 20:02:25 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT>PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+           *
+ERROR at line 6:
+ORA-06550: line 6, column 12:
+PLS-00103: Encountered the symbol ">" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 7, column 1:
+PLS-00103: Encountered the symbol "ELSE"
+ORA-06550: line 8, column 53:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at end mod remainder rem <an exponent (**)>
+and or || multiset
+
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+ais not a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: A
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='A';
+Ais a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+                                    *
+ERROR at line 13:
+ORA-06550: line 13, column 37:
+PLS-00103: Encountered the symbol "PALINDROME" when expecting one of the
+following:
+set
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is not a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a armstrong');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a armstrong');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 153
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=153;
+153is a armstrong
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  REV NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  REV:=(REV*10)+REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF TEMP=REV THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a  palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER'||N||IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER' ||N|| 'IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+THE NUMBER2IS PRIME
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Feb 20 20:02:25 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT>PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+DBMS_OUTPUT>PUT_LINE(X||'is a vowel character');
+           *
+ERROR at line 6:
+ORA-06550: line 6, column 12:
+PLS-00103: Encountered the symbol ">" when expecting one of the following:
+:= . ( @ % ;
+ORA-06550: line 7, column 1:
+PLS-00103: Encountered the symbol "ELSE"
+ORA-06550: line 8, column 53:
+PLS-00103: Encountered the symbol ";" when expecting one of the following:
+. ( * % & - + / at end mod remainder rem <an exponent (**)>
+and or || multiset
+
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: a
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='a';
+ais not a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  X CHAR(1):='&X';
+  3  BEGIN
+  4  IF X='A'OR X='E'OR X='I' OR X='O' OR X='U'
+  5  THEN
+  6  DBMS_OUTPUT.PUT_LINE(X||'is a vowel character');
+  7  ELSE
+  8  DBMS_OUTPUT.PUT_LINE(X|| 'is not a vowel character');
+  9  END IF;
+ 10  END;
+ 11  /
+Enter value for x: A
+old   2: X CHAR(1):='&X';
+new   2: X CHAR(1):='A';
+Ais a vowel character
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE('TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+DBMS_OUTPUT.PUT_LINE('TEMP|| 'is  a palindrome');
+                                    *
+ERROR at line 13:
+ORA-06550: line 13, column 37:
+PLS-00103: Encountered the symbol "PALINDROME" when expecting one of the
+following:
+set
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is  a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is not a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  SUMS NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  SUMS:=SUMS+REM*REM*REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF SUMS=TEMP THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a armstrong');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a armstrong');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 153
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=153;
+153is a armstrong
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  REV NUMBER:=0;
+  4  REM NUMBER;
+  5  TEMP NUMBER:=N;
+  6  BEGIN
+  7  WHILE N>0 LOOP
+  8  REM:=MOD(N,10);
+  9  REV:=(REV*10)+REM;
+ 10  N:=TRUNC(N/10);
+ 11  END LOOP;
+ 12  IF TEMP=REV THEN
+ 13  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is a palindrome');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE(TEMP|| 'is not a  palindrome');
+ 16  END IF;
+ 17  END;
+ 18  /
+Enter value for n: 121
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=121;
+121is a palindrome
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER'||N||IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER'||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> DECLARE
+  2  N NUMBER:=&N;
+  3  I NUMBER;
+  4  C NUMBER:=0;
+  5  BEGIN
+  6  IF  N<2 THEN
+  7   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+  8  ELSE
+  9  FOR I IN 2..N-1 LOOP
+ 10  IF MOD(N,1)=0 THEN
+ 11  C:=1;
+ 12  EXIT;
+ 13  END IF;
+ 14  END LOOP;
+ 15  IF C=0 THEN
+ 16   DBMS_OUTPUT.PUT_LINE('THE NUMBER' ||N|| 'IS PRIME');
+ 17  ELSE
+ 18   DBMS_OUTPUT.PUT_LINE(' THE NUMBER' ||N|| 'IS NOT PRIME');
+ 19  END IF;
+ 20  END IF;
+ 21  END;
+ 22  /
+Enter value for n: 2
+old   2: N NUMBER:=&N;
+new   2: N NUMBER:=2;
+THE NUMBER2IS PRIME
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

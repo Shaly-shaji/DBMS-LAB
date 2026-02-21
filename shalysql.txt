@@ -1,0 +1,456 @@
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Feb 12 20:27:41 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> CREATE TABLE Student(Student_ID,NUMBERS(5),PRIMARY KEY,Student_Name VARCHAR(20),Age NUMBER(20);
+CREATE TABLE Student(Student_ID,NUMBERS(5),PRIMARY KEY,Student_Name VARCHAR(20),Age NUMBER(20)
+                                       *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Student(StudentID,NUMBERS(5),PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20);
+CREATE TABLE Student(StudentID,NUMBERS(5),PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20)
+                                      *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Student(StudentID NUMBERS(5) PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20),Department VARCHAR(20));
+CREATE TABLE Student(StudentID NUMBERS(5) PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20),Department VARCHAR(20))
+                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE Student (StudentID NUMBER(5) PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20),Department VARCHAR(20));
+CREATE TABLE Student (StudentID NUMBER(5) PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20),Department VARCHAR(20))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> CREATE TABLE Student001 (StudentID NUMBER(5) PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20),Department VARCHAR(20));
+
+Table created.
+
+SQL> desc Student001
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(5)
+ STUDENTNAME                                        VARCHAR2(20)
+ AGE                                                NUMBER(20)
+ DEPARTMENT                                         VARCHAR2(20)
+
+SQL> ALTER TABLE STUDENT001 ADD Email VARCHAR(20);
+
+Table altered.
+
+SQL> desc Student001
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(5)
+ STUDENTNAME                                        VARCHAR2(20)
+ AGE                                                NUMBER(20)
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(20)
+
+SQL> RENAME Student001 to Student02;
+
+Table renamed.
+
+SQL> desc Student02
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(5)
+ STUDENTNAME                                        VARCHAR2(20)
+ AGE                                                NUMBER(20)
+ DEPARTMENT                                         VARCHAR2(20)
+ EMAIL                                              VARCHAR2(20)
+
+SQL> TRUNCATE TABLE Student02
+  2
+SQL> TRUNCATE TABLE Student02;
+
+Table truncated.
+
+SQL> DROP table Student02;
+
+Table dropped.
+
+SQL> desc Student2;
+ERROR:
+ORA-04043: object Student2 does not exist
+
+
+SQL> CREATE TABLE Student99 (StudentID NUMBER(5) PRIMARY KEY,StudentName VARCHAR(20),Age NUMBER(20),Department VARCHAR(20));
+
+Table created.
+
+SQL> ALTER TABLE STUDENT99 ADD Email VARCHAR(20);
+
+Table altered.
+
+SQL> INSERT INTO Student99 VALUES(1,'Mariyam',22,'Computer Science');
+INSERT INTO Student99 VALUES(1,'Mariyam',22,'Computer Science')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> INSERT INTO Student99 VALUES(1,'Mariyam',22,'Computer Science','mariyam@gmail.com);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO Student99 VALUES(1,'Mariyam',22,'Computer Science','mariyam@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO Student99 VALUES(2,'Naveen',21,'Humanities','naveen@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO Student99 VALUES(3,'Midhun',22,'Computer Science','midhun@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO Student99 VALUES(4,'Veena',23,'Maths','veena@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO Student99 VALUES(5,'Arya',21,'Physics','arya@gmail.com');
+
+1 row created.
+
+SQL> SELECT * FROM Student99;
+
+ STUDENTID STUDENTNAME                 AGE DEPARTMENT
+---------- -------------------- ---------- --------------------
+EMAIL
+--------------------
+         1 Mariyam                      22 Computer Science
+mariyam@gmail.com
+
+         2 Naveen                       21 Humanities
+naveen@gmail.com
+
+         3 Midhun                       22 Computer Science
+midhun@gmail.com
+
+
+ STUDENTID STUDENTNAME                 AGE DEPARTMENT
+---------- -------------------- ---------- --------------------
+EMAIL
+--------------------
+         4 Veena                        23 Maths
+veena@gmail.com
+
+         5 Arya                         21 Physics
+arya@gmail.com
+
+
+SQL> UPDATE Student99 SET Age=24 WHERE STUDENTID=5;
+
+1 row updated.
+
+SQL> SELECT * FROM Student99;
+
+ STUDENTID STUDENTNAME                 AGE DEPARTMENT
+---------- -------------------- ---------- --------------------
+EMAIL
+--------------------
+         1 Mariyam                      22 Computer Science
+mariyam@gmail.com
+
+         2 Naveen                       21 Humanities
+naveen@gmail.com
+
+         3 Midhun                       22 Computer Science
+midhun@gmail.com
+
+
+ STUDENTID STUDENTNAME                 AGE DEPARTMENT
+---------- -------------------- ---------- --------------------
+EMAIL
+--------------------
+         4 Veena                        23 Maths
+veena@gmail.com
+
+         5 Arya                         24 Physics
+arya@gmail.com
+
+
+SQL> DELETE FROM Student99 WHERE STUDENTID=3;
+
+1 row deleted.
+
+SQL> SELECT * FROM Student99;
+
+ STUDENTID STUDENTNAME                 AGE DEPARTMENT
+---------- -------------------- ---------- --------------------
+EMAIL
+--------------------
+         1 Mariyam                      22 Computer Science
+mariyam@gmail.com
+
+         2 Naveen                       21 Humanities
+naveen@gmail.com
+
+         4 Veena                        23 Maths
+veena@gmail.com
+
+
+ STUDENTID STUDENTNAME                 AGE DEPARTMENT
+---------- -------------------- ---------- --------------------
+EMAIL
+--------------------
+         5 Arya                         24 Physics
+arya@gmail.com
+
+
+SQL> CREATE TABLE Customer(CustomerId INT PRIMARY KEY,NAME VARCHAR(15),City VARCHAR(15));
+
+Table created.
+
+SQL> CREATE TABLE Product{Productid,ProductName,Price,CustomerId(FOREIGN KEY)};
+CREATE TABLE Product{Productid,ProductName,Price,CustomerId(FOREIGN KEY)}
+                    *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> CREATE TABLE Product(Productid,ProductName,Price,CustomerId(FOREIGN KEY));
+CREATE TABLE Product(Productid,ProductName,Price,CustomerId(FOREIGN KEY))
+                                                           *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomeId in FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomeId in FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId))
+                                                                                                 *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomeId IN FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomeId IN FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId))
+                                                                                                 *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId IN FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId IN FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId))
+                                                                                                  *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId in FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId in FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId))
+                                                                                                  *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId INT FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId INT FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId))
+                                                                                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId INT,FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,PRODUCTNAME VARCHAR(15),Price NUMBER(5),CustomerId INT,FOREGIN KEY(CustomerId)REFERNCES Customer(CustomerId))
+                                                                                                                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,ProductName VARCHAR(15),Price NUMBER(5),CustomerID INT,FOREGIN KEY(CustomerID)REFERNCES Customer(CustomerID));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,ProductName VARCHAR(15),Price NUMBER(5),CustomerID INT,FOREGIN KEY(CustomerID)REFERNCES Customer(CustomerID))
+                                                                                                                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,ProductName VARCHAR(15),Price NUMBER(5),CustomerID INT,FOREIGN KEY(CustomerID)REFERNCES Customer(CustomerID));
+CREATE TABLE Product(ProductId INT PRIMARY KEY,ProductName VARCHAR(15),Price NUMBER(5),CustomerID INT,FOREIGN KEY(CustomerID)REFERNCES Customer(CustomerID))
+                                                                                                                             *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> CREATE TABLE Product(ProductId INT PRIMARY KEY,ProductName VARCHAR(15),Price NUMBER(5),CustomerID INT,FOREIGN KEY(CustomerID)REFERENCES Customer(CustomerID));
+
+Table created.
+
+SQL> INSERT INTO Customer VALUES (1,'Alice','Kochi');
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (2,'Babu','Trivandrum');
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (3,'Chitra','Kollam');
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (4,'Siva','Kottayam');
+
+1 row created.
+
+SQL> INSERT INTO Customer VALUES (5,'Sandhya','Trivandrum');
+
+1 row created.
+
+SQL> INSERT INTO Product VALUES (101,'Laptop',5500,1);
+
+1 row created.
+
+SQL> INSERT INTO Product VALUES (102,'Mobile',15000,2);
+
+1 row created.
+
+SQL> INSERT INTO Product VALUES (103,'Tablet',20000,3);
+
+1 row created.
+
+SQL> INSERT INTO Product VALUES (104,'Printer',10000,4);
+
+1 row created.
+
+SQL> INSERT INTO Product VALUES (105,'Monitor',12000,5);
+
+1 row created.
+
+SQL> SELECT * FROM Product
+  2
+SQL> SELECT * FROM Product;
+
+ PRODUCTID PRODUCTNAME          PRICE CUSTOMERID
+---------- --------------- ---------- ----------
+       101 Laptop                5500          1
+       102 Mobile               15000          2
+       103 Tablet               20000          3
+       104 Printer              10000          4
+       105 Monitor              12000          5
+
+SQL> SELECT Name,City FROM Customer;
+
+NAME            CITY
+--------------- ---------------
+Alice           Kochi
+Babu            Trivandrum
+Chitra          Kollam
+Siva            Kottayam
+Sandhya         Trivandrum
+
+SQL> SELECT * FROM Customer WHERE City='Kochi';
+
+CUSTOMERID NAME            CITY
+---------- --------------- ---------------
+         1 Alice           Kochi
+
+SQL> SELECT * FROM Prouct WHERE Price>15000;
+SELECT * FROM Prouct WHERE Price>15000
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM Prouct WHERE PRICE>15000;
+SELECT * FROM Prouct WHERE PRICE>15000
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM Product WHERE PRICE>15000;
+
+ PRODUCTID PRODUCTNAME          PRICE CUSTOMERID
+---------- --------------- ---------- ----------
+       103 Tablet               20000          3
+
+SQL> SELECT CustomerID,COUNT(*)AS TotalProducts FROM Product GROUP BY CustomerID;
+
+CUSTOMERID TOTALPRODUCTS
+---------- -------------
+         1             1
+         2             1
+         4             1
+         5             1
+         3             1
+
+SQL> SELECT CustomerID,AVG(PRICE) AS AvgPrice FROM Product GROUP BY CustomerID HAVING AVG(Price)>12000;
+
+CUSTOMERID   AVGPRICE
+---------- ----------
+         2      15000
+         3      20000
+
+SQL> SELECT * FROM Product ORDER BY Price ASC;
+
+ PRODUCTID PRODUCTNAME          PRICE CUSTOMERID
+---------- --------------- ---------- ----------
+       101 Laptop                5500          1
+       104 Printer              10000          4
+       105 Monitor              12000          5
+       102 Mobile               15000          2
+       103 Tablet               20000          3
+
+SQL> SELECT * FROM Customer ORDER BY NAME DESC;
+
+CUSTOMERID NAME            CITY
+---------- --------------- ---------------
+         4 Siva            Kottayam
+         5 Sandhya         Trivandrum
+         3 Chitra          Kollam
+         2 Babu            Trivandrum
+         1 Alice           Kochi
+
+SQL> SELECT * FROM Customer WHERE CustomerID IN(SELECT CustomerID FROM Product WHERE PRICE > 15000);
+
+CUSTOMERID NAME            CITY
+---------- --------------- ---------------
+         3 Chitra          Kollam
+
+SQL> SELECT * FROM Product WHERE PRICE =(SELECT MAX(PRICE) FROM Product);
+
+ PRODUCTID PRODUCTNAME          PRICE CUSTOMERID
+---------- --------------- ---------- ----------
+       103 Tablet               20000          3
+
+SQL> CREATE VIEW ProductCustomer AS SELECT p.ProductName,p.Price,c.NAME AS CustomerName FROM Product p JOIN Customer c ON p.CustomerID=c.CustomerID;
+
+View created.
+
+SQL> SELECT * FROM ProductCustomer;
+
+PRODUCTNAME          PRICE CUSTOMERNAME
+--------------- ---------- ---------------
+Laptop                5500 Alice
+Mobile               15000 Babu
+Tablet               20000 Chitra
+Printer              10000 Siva
+Monitor              12000 Sandhya
+
+SQL> SELECT CustomerID,AVG(PRICE) AS AvgPrice FROM Product GROUP BY CustomerID ;
+
+CUSTOMERID   AVGPRICE
+---------- ----------
+         1       5500
+         2      15000
+         4      10000
+         5      12000
+         3      20000
+
+SQL>
