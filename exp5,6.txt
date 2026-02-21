@@ -1,0 +1,77 @@
+SQL*Plus: Release 10.2.0.1.0 - Production on Fri Feb 20 21:07:33 2026
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> set serveroutput on
+SQL> DECLARE
+  2  A number:=&A;
+  3  B number:=&B;
+  4  C number;
+  5  BEGIN
+  6  C:=A+B;
+  7  DBMS_OUTPUT.PUT_LINE('Sum is' ||C);
+  8  END;
+  9  \
+ 10  /
+Enter value for a: 6
+old   2: A number:=&A;
+new   2: A number:=6;
+Enter value for b: 6
+old   3: B number:=&B;
+new   3: B number:=6;
+\
+*
+ERROR at line 9:
+ORA-06550: line 9, column 1:
+PLS-00103: Encountered the symbol "\" The symbol "\" was ignored.
+
+
+SQL> DECLARE
+  2  A number:=&A;
+  3  B number:=&B;
+  4  C number;
+  5  BEGIN
+  6  C:=A+B;
+  7  DBMS_OUTPUT.PUT_LINE('Sum is' ||C);
+  8  END;
+  9  /
+Enter value for a: 6
+old   2: A number:=&A;
+new   2: A number:=6;
+Enter value for b: 6
+old   3: B number:=&B;
+new   3: B number:=6;
+Sum is12
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2  A number:=&A;
+  3  B number:=&B;
+  4  C number:=&C;
+  5  BEGIN
+  6  IF A>B AND A>C THEN
+  7  DBMS_OUTPUT.PUT_LINE(A|| 'is the bigest number');
+  8  ELSIF B>A AND B>C THEN
+  9  DBMS_OUTPUT.PUT_LINE(B||'is the biggest number');
+ 10  ELSE
+ 11  DBMS_OUTPUT.PUT_LINE(C||'is the biggest number');
+ 12  END IF;
+ 13  END;
+ 14  /
+Enter value for a: 7
+old   2: A number:=&A;
+new   2: A number:=7;
+Enter value for b: 8
+old   3: B number:=&B;
+new   3: B number:=8;
+Enter value for c: 5
+old   4: C number:=&C;
+new   4: C number:=5;
+8is the biggest number
+
+PL/SQL procedure successfully completed.
